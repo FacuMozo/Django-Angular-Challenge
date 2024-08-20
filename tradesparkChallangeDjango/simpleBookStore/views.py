@@ -24,10 +24,11 @@ class BookViewSet(viewsets.ModelViewSet):
         books = Book.objects.filter(title=title)
         warning_books = []
 
+        # Verifica que exista un libro con el titulo 
         if not books.exists():
             return Response({'error': f'Error, no books found with the title "{title}".'}, status=status.HTTP_404_NOT_FOUND)
 
-        # Check if the category exists
+        # Verifica que la categoria exista
         try:
             category = Category.objects.get(name=category_name)
         except Category.DoesNotExist:

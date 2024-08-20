@@ -58,6 +58,9 @@
     border-radius: 6px;
     cursor: pointer;
 }
+.formDeleteButton:hover {
+    background-color: #c02e2e;
+}
 
 .editModeButton:hover {
     background-color: #9999998d;

@@ -28,7 +28,6 @@
                     <td>
                         <span *ngFor="let category of book['categories']; let i = index">
                             {{ category.name }}
-                            <!-- <button *ngIf="editMode" (click)="removeCategory(book, i)"> X </button> -->
                         </span>
                     </td>
                 </tr>
@@ -42,7 +41,7 @@
         <h3>Delete Category</h3>
         <p>Please enter the category and the title of the books from which you want to remove the category.</p>
         <span>Title:</span><br>
-        <input type="text" [(ngModel)]="titleToRemove" placeholder="Book title"><br>
+        <input type="text" [(ngModel)]="formTitle" placeholder="Book title"><br>
         <span>Category:</span><br>
         <input type="text" [(ngModel)]="categoryToRemove" placeholder="Category to delete"><br>
         <button class="formDeleteButton" (click)="removeCategory()">Delete</button>

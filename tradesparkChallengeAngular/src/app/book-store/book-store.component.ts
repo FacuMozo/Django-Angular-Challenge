@@ -14,7 +14,7 @@ export class BookStoreComponent implements OnInit {
   categoryFilter: string = '';
   editMode: boolean = false; // Controla la visualización del formulario
   errorMessage: string | null = null; // Mensaje de error para mostrar al usuario
-  titleToRemove: string = ''; // Título a eliminar
+  formTitle: string = ''; // Título a eliminar
   categoryToRemove: string = ''; // Categoría a eliminar
 
   constructor(private bookStoreService: BookStoreService) { }
@@ -34,7 +34,7 @@ export class BookStoreComponent implements OnInit {
 
   removeCategory(): void {
     this.errorMessage = null;
-    this.bookStoreService.removeCategory(this.titleToRemove, this.categoryToRemove).subscribe(
+    this.bookStoreService.removeCategory(this.formTitle, this.categoryToRemove).subscribe(
       response => {
         this.errorMessage = null;
         //Controlamos si hay warns
@@ -44,12 +44,12 @@ export class BookStoreComponent implements OnInit {
         // Actualiza los libros después de la eliminación exitosa
         this.bookStoreService.getBooks().subscribe((data: any[]) => {
           this.books = data;
-          this.titleToRemove = '';
+          this.formTitle = '';
           this.categoryToRemove = '';
         });
       },
       error => {
-        this.errorMessage = error.error.error || `The category "${this.categoryToRemove}" could not be removed from books with the title "${this.titleToRemove}".`;
+        this.errorMessage = error.error.error || `The category "${this.categoryToRemove}" could not be removed from books with the title "${this.formTitle}".`;
         
       }
     );
