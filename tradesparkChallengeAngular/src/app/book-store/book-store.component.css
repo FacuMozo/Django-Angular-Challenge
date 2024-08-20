@@ -7,6 +7,107 @@
     background-position: center;
     height: 100vh;
     width: 100%;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    background-color: #9999998d;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.successMessage {
+    color: green;
+    background-color: #9999998d;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.lastColum{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editModeButton {
+    margin: 1rem 0;
+    padding: 8px 16px;
+    background-color: #AAAAAA;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.formDeleteButton {
+    padding: 8px 16px;
+    background-color: #fc4c4c;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.editModeButton:hover {
+    background-color: #9999998d;
+}
+.editModeButton img {
+    width: 24px;
+    margin-left: 8px;
+}
+
+td span {
+    margin-right: 10px;
+}
+
+tbody td button {
+    margin: 0 0 0 5px;
+    padding:  0 4px;
+    color: red;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+tbody td button:hover {
+    background-color: rgba(119, 136, 153, 0.25) ;
+    
+    transform: scale(1.2);
+}
+
+
+
+.filters {
+    display: flex;
+    justify-content:space-between;
+        margin-bottom: 20px;
+}
+    
+.filters input[type="text"] {
+    width: 30%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 h1 {
@@ -25,7 +126,8 @@ h1 {
 
 .book-list table {
     width: 100%;
-    border-collapse: collapse; /* Ensures that the borders collapse into a single border */
+    border-collapse: collapse; /* Ensures that the borders collapse into a single border */    
+    table-layout: fixed;
 }
 
 .book-list th, .book-list td {
@@ -46,4 +148,8 @@ h1 {
 
 .book-list tr:hover {
     background-color: #f5f5f5; /* Slightly darker background on row hover */
+}
+
+.edit-form input{
+    width: 50%;
 }

@@ -24,4 +24,14 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def remove_category(self, category_name):
+        try:
+            category = self.categories.get(name=category_name)
+            if self.categories.count() > 1:
+                self.categories.remove(category)
+            else:
+                raise ValueError("The book must have at least one category.")
+        except Category.DoesNotExist:
+            pass  
 

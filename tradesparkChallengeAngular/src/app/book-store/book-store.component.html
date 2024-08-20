@@ -1,24 +1,50 @@
 <div class="background-image">
     <h1> Book Store </h1>
+    <div class="filters">
+        <input type="text" [(ngModel)]="titleFilter" placeholder="Filter by title">
+        <input type="text" [(ngModel)]="authorFilter" placeholder="Filter by author">
+        <input type="text" [(ngModel)]="categoryFilter" placeholder="Filter by category">
+    </div>
+    <!-- Mensaje de error si existe -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
     <div class="book-list">
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Book Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let book of books">
-                        <td>{{ book["title"] }}</td>
-                        <td>{{ book["author"]["name"] }}</td>
-                        <td>{{ categoriesToString(book['categories']) }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th class="lastColum">
+                        <span>Category</span>
+                        <!-- <button class="editMode" (click)="toggleEditMode()"><img src="../../assets/editIcon.png" alt="Edit"></button> -->
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of filteredBooks()">
+                    <td>{{ book["title"] }}</td>
+                    <td>{{ book["author"]["name"] }}</td>
+                    <td>
+                        <span *ngFor="let category of book['categories']; let i = index">
+                            {{ category.name }}
+                            <!-- <button *ngIf="editMode" (click)="removeCategory(book, i)"> X </button> -->
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Formulario de eliminación de categoría -->
+    <button class="editModeButton" (click)="toggleEditMode()"> {{ editMode ? 'Exit edit mode' : 'Editar Categorías' }} 
+        <img *ngIf="!editMode" src="../../assets/editIcon.png" alt="Edit">  </button>
+    <div *ngIf="editMode" class="edit-form">
+        <h3>Delete Category</h3>
+        <p>Please enter the category and the title of the books from which you want to remove the category.</p>
+        <span>Title:</span><br>
+        <input type="text" [(ngModel)]="titleToRemove" placeholder="Book title"><br>
+        <span>Category:</span><br>
+        <input type="text" [(ngModel)]="categoryToRemove" placeholder="Category to delete"><br>
+        <button class="formDeleteButton" (click)="removeCategory()">Delete</button>
     </div>
 </div>
-
